@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="YzmProjeModelStoreContainer" CdmEntityContainer="YzmProjeEntities">
+    <EntitySetMapping Name="Favoriler">
+      <EntityTypeMapping TypeName="YzmProjeModel.Favoriler">
+        <MappingFragment StoreEntitySet="Favoriler">
+          <ScalarProperty Name="favoriID" ColumnName="favoriID" />
+          <ScalarProperty Name="kullaniciID" ColumnName="kullaniciID" />
+          <ScalarProperty Name="urunID" ColumnName="urunID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mesajlasma">
+      <EntityTypeMapping TypeName="YzmProjeModel.Mesajlasma">
+        <MappingFragment StoreEntitySet="Mesajlasma">
+          <ScalarProperty Name="mesajID" ColumnName="mesajID" />
+          <ScalarProperty Name="mesajText" ColumnName="mesajText" />
+          <ScalarProperty Name="gonderenID" ColumnName="gonderenID" />
+          <ScalarProperty Name="aliciID" ColumnName="aliciID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategori">
+      <EntityTypeMapping TypeName="YzmProjeModel.Kategori">
+        <MappingFragment StoreEntitySet="Kategori">
+          <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+          <ScalarProperty Name="kategoriAd" ColumnName="kategoriAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kullanicilar">
+      <EntityTypeMapping TypeName="YzmProjeModel.Kullanicilar">
+        <MappingFragment StoreEntitySet="Kullanicilar">
+          <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
+          <ScalarProperty Name="parola" ColumnName="parola" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Urunler">
+      <EntityTypeMapping TypeName="YzmProjeModel.Urunler">
+        <MappingFragment StoreEntitySet="Urunler">
+          <ScalarProperty Name="urunID" ColumnName="urunID" />
+          <ScalarProperty Name="urunAd" ColumnName="urunAd" />
+          <ScalarProperty Name="birimFiyat" ColumnName="birimFiyat" />
+          <ScalarProperty Name="kullaniciID" ColumnName="kullaniciID" />
+          <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+          <ScalarProperty Name="urunStatu" ColumnName="urunStatu" />
+          <ScalarProperty Name="urunResim" ColumnName="urunResim" />
+          <ScalarProperty Name="urunAciklama" ColumnName="urunAciklama" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

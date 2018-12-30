@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="YzmProjeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Favoriler">
+    <Key>
+      <PropertyRef Name="favoriID" />
+    </Key>
+    <Property Name="favoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kullaniciID" Type="int" />
+    <Property Name="urunID" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'YzmProje.dbo.Kategori' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="kategoriID" />
+      <PropertyRef Name="kategoriAd" />
+    </Key>
+    <Property Name="kategoriID" Type="int" Nullable="false" />
+    <Property Name="kategoriAd" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'YzmProje.dbo.Kullanicilar' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Kullanicilar">
+    <Key>
+      <PropertyRef Name="KullaniciID" />
+      <PropertyRef Name="email" />
+      <PropertyRef Name="kullaniciAdi" />
+      <PropertyRef Name="parola" />
+      <PropertyRef Name="adres" />
+      <PropertyRef Name="telefon" />
+    </Key>
+    <Property Name="KullaniciID" Type="int" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="kullaniciAdi" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="parola" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="adres" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="telefon" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mesajlasma">
+    <Key>
+      <PropertyRef Name="mesajID" />
+    </Key>
+    <Property Name="mesajID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mesajText" Type="text" Nullable="false" />
+    <Property Name="gonderenID" Type="int" Nullable="false" />
+    <Property Name="aliciID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'YzmProje.dbo.Urunler' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Urunler">
+    <Key>
+      <PropertyRef Name="urunID" />
+      <PropertyRef Name="urunAd" />
+      <PropertyRef Name="birimFiyat" />
+      <PropertyRef Name="kullaniciID" />
+      <PropertyRef Name="kategoriID" />
+      <PropertyRef Name="urunStatu" />
+      <PropertyRef Name="urunResim" />
+      <PropertyRef Name="urunAciklama" />
+    </Key>
+    <Property Name="urunID" Type="int" Nullable="false" />
+    <Property Name="urunAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="birimFiyat" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="kullaniciID" Type="int" Nullable="false" />
+    <Property Name="kategoriID" Type="int" Nullable="false" />
+    <Property Name="urunStatu" Type="bit" Nullable="false" />
+    <Property Name="urunResim" Type="image" Nullable="false" />
+    <Property Name="urunAciklama" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="YzmProjeModelStoreContainer">
+    <EntitySet Name="Favoriler" EntityType="Self.Favoriler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mesajlasma" EntityType="Self.Mesajlasma" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Kategori].[kategoriID] AS [kategoriID], 
+    [Kategori].[kategoriAd] AS [kategoriAd]
+    FROM [dbo].[Kategori] AS [Kategori]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Kullanicilar].[KullaniciID] AS [KullaniciID], 
+    [Kullanicilar].[email] AS [email], 
+    [Kullanicilar].[kullaniciAdi] AS [kullaniciAdi], 
+    [Kullanicilar].[parola] AS [parola], 
+    [Kullanicilar].[adres] AS [adres], 
+    [Kullanicilar].[telefon] AS [telefon]
+    FROM [dbo].[Kullanicilar] AS [Kullanicilar]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Urunler" EntityType="Self.Urunler" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Urunler].[urunID] AS [urunID], 
+    [Urunler].[urunAd] AS [urunAd], 
+    [Urunler].[birimFiyat] AS [birimFiyat], 
+    [Urunler].[kullaniciID] AS [kullaniciID], 
+    [Urunler].[kategoriID] AS [kategoriID], 
+    [Urunler].[urunStatu] AS [urunStatu], 
+    [Urunler].[urunResim] AS [urunResim], 
+    [Urunler].[urunAciklama] AS [urunAciklama]
+    FROM [dbo].[Urunler] AS [Urunler]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

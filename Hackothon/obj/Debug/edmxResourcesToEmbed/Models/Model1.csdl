@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="yzmYeniModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblAdresDetay">
+    <Key>
+      <PropertyRef Name="kullaniciAdresID" />
+    </Key>
+    <Property Name="kullaniciAdresID" Type="Int32" Nullable="false" />
+    <Property Name="kullaniciAdres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mahalle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="postaKod" Type="Int32" Nullable="false" />
+    <Property Name="sehir" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ilce" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblKullanicilar" Relationship="Self.FK_tblKullanicilar_tblAdresDetay" FromRole="tblAdresDetay" ToRole="tblKullanicilar" />
+  </EntityType>
+  <EntityType Name="tblKategori">
+    <Key>
+      <PropertyRef Name="kategoriID" />
+    </Key>
+    <Property Name="kategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KetegoriAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="urunID" Type="Int32" />
+    <NavigationProperty Name="tblUrunler" Relationship="Self.FK_tblKategori_tblUrunler" FromRole="tblKategori" ToRole="tblUrunler" />
+  </EntityType>
+  <EntityType Name="tblKullanicilar">
+    <Key>
+      <PropertyRef Name="kullaniciID" />
+    </Key>
+    <Property Name="kullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kullaniciAdresID" Type="Int32" />
+    <Property Name="kullaniciSifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kullaniciEposta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblAdresDetay" Relationship="Self.FK_tblKullanicilar_tblAdresDetay" FromRole="tblKullanicilar" ToRole="tblAdresDetay" />
+    <NavigationProperty Name="tblMesajlar" Relationship="Self.FK_tblMesajlar_tblKullanicilar" FromRole="tblKullanicilar" ToRole="tblMesajlar" />
+    <NavigationProperty Name="tblMesajlar1" Relationship="Self.FK_tblMesajlar_tblKullanicilar1" FromRole="tblKullanicilar" ToRole="tblMesajlar" />
+  </EntityType>
+  <EntityType Name="tblMesajlar">
+    <Key>
+      <PropertyRef Name="mesasjID" />
+    </Key>
+    <Property Name="mesasjID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="gonderenID" Type="Int32" />
+    <Property Name="aliciID" Type="Int32" />
+    <Property Name="mesajIcerik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="urunID" Type="Int32" />
+    <Property Name="okunduBilgisi" Type="Boolean" />
+    <NavigationProperty Name="tblKullanicilar" Relationship="Self.FK_tblMesajlar_tblKullanicilar" FromRole="tblMesajlar" ToRole="tblKullanicilar" />
+    <NavigationProperty Name="tblKullanicilar1" Relationship="Self.FK_tblMesajlar_tblKullanicilar1" FromRole="tblMesajlar" ToRole="tblKullanicilar" />
+    <NavigationProperty Name="tblUrunler" Relationship="Self.FK_tblMesajlar_tblUrunler" FromRole="tblMesajlar" ToRole="tblUrunler" />
+  </EntityType>
+  <EntityType Name="tblSiparis">
+    <Key>
+      <PropertyRef Name="faturaKod" />
+    </Key>
+    <Property Name="faturaKod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kullaniciKod" Type="Int32" />
+    <Property Name="faturaAdres" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="siparisDurumKod" Type="Int32" />
+    <Property Name="siparisTarih" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="tblSiparisDurum" Relationship="Self.FK_tblSiparis_tblSiparisDurum" FromRole="tblSiparis" ToRole="tblSiparisDurum" />
+  </EntityType>
+  <EntityType Name="tblSiparisDurum">
+    <Key>
+      <PropertyRef Name="siparisDurumKod" />
+    </Key>
+    <Property Name="siparisDurumKod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="aciklama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblSiparis" Relationship="Self.FK_tblSiparis_tblSiparisDurum" FromRole="tblSiparisDurum" ToRole="tblSiparis" />
+  </EntityType>
+  <EntityType Name="tblUrunler">
+    <Key>
+      <PropertyRef Name="urunID" />
+    </Key>
+    <Property Name="urunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="urunAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="urunMarka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="urunFiyat" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="aktiflik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblKategori" Relationship="Self.FK_tblKategori_tblUrunler" FromRole="tblUrunler" ToRole="tblKategori" />
+    <NavigationProperty Name="tblMesajlar" Relationship="Self.FK_tblMesajlar_tblUrunler" FromRole="tblUrunler" ToRole="tblMesajlar" />
+  </EntityType>
+  <Association Name="FK_tblKullanicilar_tblAdresDetay">
+    <End Role="tblAdresDetay" Type="Self.tblAdresDetay" Multiplicity="0..1" />
+    <End Role="tblKullanicilar" Type="Self.tblKullanicilar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAdresDetay">
+        <PropertyRef Name="kullaniciAdresID" />
+      </Principal>
+      <Dependent Role="tblKullanicilar">
+        <PropertyRef Name="kullaniciAdresID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblKategori_tblUrunler">
+    <End Role="tblUrunler" Type="Self.tblUrunler" Multiplicity="0..1" />
+    <End Role="tblKategori" Type="Self.tblKategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUrunler">
+        <PropertyRef Name="urunID" />
+      </Principal>
+      <Dependent Role="tblKategori">
+        <PropertyRef Name="urunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblMesajlar_tblKullanicilar">
+    <End Role="tblKullanicilar" Type="Self.tblKullanicilar" Multiplicity="0..1" />
+    <End Role="tblMesajlar" Type="Self.tblMesajlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblKullanicilar">
+        <PropertyRef Name="kullaniciID" />
+      </Principal>
+      <Dependent Role="tblMesajlar">
+        <PropertyRef Name="gonderenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblMesajlar_tblKullanicilar1">
+    <End Role="tblKullanicilar" Type="Self.tblKullanicilar" Multiplicity="0..1" />
+    <End Role="tblMesajlar" Type="Self.tblMesajlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblKullanicilar">
+        <PropertyRef Name="kullaniciID" />
+      </Principal>
+      <Dependent Role="tblMesajlar">
+        <PropertyRef Name="aliciID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblMesajlar_tblUrunler">
+    <End Role="tblUrunler" Type="Self.tblUrunler" Multiplicity="0..1" />
+    <End Role="tblMesajlar" Type="Self.tblMesajlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUrunler">
+        <PropertyRef Name="urunID" />
+      </Principal>
+      <Dependent Role="tblMesajlar">
+        <PropertyRef Name="urunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSiparis_tblSiparisDurum">
+    <End Role="tblSiparisDurum" Type="Self.tblSiparisDurum" Multiplicity="0..1" />
+    <End Role="tblSiparis" Type="Self.tblSiparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSiparisDurum">
+        <PropertyRef Name="siparisDurumKod" />
+      </Principal>
+      <Dependent Role="tblSiparis">
+        <PropertyRef Name="siparisDurumKod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="yzmYeniEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblAdresDetay" EntityType="Self.tblAdresDetay" />
+    <EntitySet Name="tblKategori" EntityType="Self.tblKategori" />
+    <EntitySet Name="tblKullanicilar" EntityType="Self.tblKullanicilar" />
+    <EntitySet Name="tblMesajlar" EntityType="Self.tblMesajlar" />
+    <EntitySet Name="tblSiparis" EntityType="Self.tblSiparis" />
+    <EntitySet Name="tblSiparisDurum" EntityType="Self.tblSiparisDurum" />
+    <EntitySet Name="tblUrunler" EntityType="Self.tblUrunler" />
+    <AssociationSet Name="FK_tblKullanicilar_tblAdresDetay" Association="Self.FK_tblKullanicilar_tblAdresDetay">
+      <End Role="tblAdresDetay" EntitySet="tblAdresDetay" />
+      <End Role="tblKullanicilar" EntitySet="tblKullanicilar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblKategori_tblUrunler" Association="Self.FK_tblKategori_tblUrunler">
+      <End Role="tblUrunler" EntitySet="tblUrunler" />
+      <End Role="tblKategori" EntitySet="tblKategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblMesajlar_tblKullanicilar" Association="Self.FK_tblMesajlar_tblKullanicilar">
+      <End Role="tblKullanicilar" EntitySet="tblKullanicilar" />
+      <End Role="tblMesajlar" EntitySet="tblMesajlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblMesajlar_tblKullanicilar1" Association="Self.FK_tblMesajlar_tblKullanicilar1">
+      <End Role="tblKullanicilar" EntitySet="tblKullanicilar" />
+      <End Role="tblMesajlar" EntitySet="tblMesajlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblMesajlar_tblUrunler" Association="Self.FK_tblMesajlar_tblUrunler">
+      <End Role="tblUrunler" EntitySet="tblUrunler" />
+      <End Role="tblMesajlar" EntitySet="tblMesajlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSiparis_tblSiparisDurum" Association="Self.FK_tblSiparis_tblSiparisDurum">
+      <End Role="tblSiparisDurum" EntitySet="tblSiparisDurum" />
+      <End Role="tblSiparis" EntitySet="tblSiparis" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

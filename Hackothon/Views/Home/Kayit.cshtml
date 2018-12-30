@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Kayit";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+    <div class="container" style="padding-top: 1px;">
+        <h1 class="page-header">Kayit Ol</h1>
+        <div class="row">
+
+            <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+                <div class="alert alert-info alert-dismissable">
+                    <i class="fa fa-coffee"></i>
+                </div>
+                <h3>Kullanici Bilgileri</h3>
+
+                @using (Html.BeginForm())
+                {
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">İsim:</label>
+                        <div class="col-lg-8">
+                            @Html.TextBox("isim")<br />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Soy İsim:</label>
+                        <div class="col-lg-8">
+                            @Html.TextBox("soyisim")<br />
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Email:</label>
+                        <div class="col-lg-8">
+                            @Html.TextBox("eposta")<br />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Adres</label>
+                        <div class="col-lg-8">
+                            @Html.TextBox("adres")<br />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Kullanıcı Adı:</label>
+                        <div class="col-md-8">
+                            @Html.TextBox("kadi")<br />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Şifre:</label>
+                        <div class="col-md-8">
+                            @Html.TextBox("sifre")<br />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-8">
+                            <input name="kayit" class="btn btn-primary" value="Kayit Ol" type="submit">
+
+                            <button onclick="location.href='~/Home'" type="button" class="btn btn-default">Iptal</button>
+                            <span></span>
+
+                        </div>
+                    </div>
+                }
+                </div>
+        </div>
+    </div>
+
+
